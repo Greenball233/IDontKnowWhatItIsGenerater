@@ -1,3 +1,3 @@
 # IDontKnowWhatItIsGenerater
  
-https://greenball233.gitee.io/IDontKnowWhatItIsGenerater
+https://greenball233.github.io/IDontKnowWhatItIsGenerater
