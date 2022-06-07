@@ -1,0 +1,10 @@
+body {
+    background-color: grey;
+}
+@font-face {
+    font-family: 'fangzhengshusong';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url("res/fangzhengshusong.ttf");
+}

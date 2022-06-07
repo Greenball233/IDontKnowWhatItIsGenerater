@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<br>
+<label for="color">颜色：</label>
+<input type="color" id="color">
+<br>
+<label for="avatar">选择头像：</label>
+<input id="avatar" type="file" accept=".jpg, .png" disabled="">
+<strong id="avatarMessage">等待上传文件...</strong>
+<br>
+<label for="name">输入名字：</label>
+<input id="name" type="text">
+<br>
+<label for="content">选择内容：</label>
+<input id="content" type="file" accept=".jpg, .png" disabled="">
+<strong id="contentMessage">等待上传文件...</strong>
+<br>
+<button id="button" type="button">绘制图像</button>
+<button id="download" type="button" disabled="disabled">下载</button>
+<br>
+<canvas id="temp"></canvas>
+</body>
+<script src="script.js"></script>
+</html>
