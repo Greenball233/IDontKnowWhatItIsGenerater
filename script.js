@@ -4,7 +4,7 @@ const button = document.getElementById("button");
 const color = document.getElementById("color");
 const width = 800;
 const height = 800;
-const panelHeight = height/10;
+const panelHeight = height / 10;
 const avatarRadius = 40;
 const avatarOffset = 15;
 const bottomOffset = 180;
@@ -29,13 +29,21 @@ window.addEventListener("load", function () {
     const placeholder = new Image();
     placeholder.src = "res/placeholder.png";
     placeholder.onload = function () {
+        document.fonts.ready.then(() => {
+            button.disabled = false;
+        })
+        ctx.font = `10px fangzhengshusong`;
+        ctx.fillText("测试", 0, 0);
         ctx.drawImage(placeholder, 0, 0, placeholder.width, placeholder.height, 0, 0, width, height);
     }
 });
 avatarFile.addEventListener("change", readAvatar);
 contentFile.addEventListener("change", readContent);
 downloadButton.addEventListener("click", download);
-button.addEventListener('click', function () {
+button.addEventListener('click', draw)
+
+function draw() {
+    if (document.fonts.status !== "loaded") return;
     ctx.fillStyle = "rgba(255, 255, 255, 1)";
     ctx.fillRect(0, 0, width, height);
     ctx.clearRect(leftPosX, avatarPos.y + avatarOffset + avatarRadius, width - 2 * leftPosX, height - avatarPos.y - avatarOffset - avatarRadius - bottomOffset);
@@ -59,20 +67,20 @@ button.addEventListener('click', function () {
         avatar.onload = function () {
             ctx.drawImage(avatar, 0, 0, avatar.width, avatar.height, avatarPos.x - avatarRadius, avatarPos.y - avatarRadius, avatarRadius * 2, avatarRadius * 2);
             ctx.restore();
-            ctx.textAlign = "left";
-            let fontSize = 30;
-            ctx.font = `${fontSize}px fangzhengshusong`;
-            ctx.fillText((nameInputField.value.trim() === "") ? "名字" : nameInputField.value, avatarPos.x + avatarRadius + nameOffset, avatarPos.y + fontSize / 2 - 5);
             const content = new Image();
             content.src = (contentUrl == null) ? "res/placeholder.png" : contentUrl;
             content.onload = function () {
                 ctx.drawImage(content, 0, 0, content.width, content.height, leftPosX, avatarPos.y + avatarOffset + avatarRadius, width - 2 * leftPosX, height - avatarPos.y - avatarOffset - avatarRadius - bottomOffset);
                 ctx.strokeRect(leftPosX, avatarPos.y + avatarOffset + avatarRadius, width - 2 * leftPosX, height - avatarPos.y - avatarOffset - avatarRadius - bottomOffset);
+                ctx.textAlign = "left";
+                let fontSize = 30;
+                ctx.font = `${fontSize}px fangzhengshusong`;
+                ctx.fillText((nameInputField.value.trim() === "") ? "名字" : nameInputField.value, avatarPos.x + avatarRadius + nameOffset, avatarPos.y + fontSize / 2 - 5);
                 downloadButton.disabled = false;
             }
         }
     }
-})
+}
 
 function readAvatar() {
     let fileReader = new FileReader();
